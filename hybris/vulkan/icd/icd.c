@@ -159,9 +159,13 @@ vk_icdNegotiateLoaderICDInterfaceVersion(uint32_t *version)
 {
     /* Version 5 lets the loader validate instance API versions. Legacy
      * loaders are deliberately unsupported, rather than assuming 1.0. */
-    if (!version || *version < 5)
+    if (!version)
         return VK_ERROR_INCOMPATIBLE_DRIVER;
-    *version = 5;
+    /* Some guest loaders still offer interface version 3/4 (seen on XRing O3 /
+     * Android 17). Accept whatever the loader offers and cap our side at 5
+     * instead of refusing to load the whole ICD. */
+    if (*version > 5)
+        *version = 5;
     return VK_SUCCESS;
 }
 
