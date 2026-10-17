@@ -91,7 +91,7 @@
  * frees us from the IE-surplus cap entirely, at the cost of growing
  * the thunk from 16 to 20 bytes and matching count_tls/THUNK_SIZE.
  */
-#define BIONIC_STATIC_TLS_SIZE   1024
+#define BIONIC_STATIC_TLS_SIZE   4096
 #define BIONIC_TPIDR_OFFSET      8    /* matches StaticTlsLayout::offset_thread_pointer() with MIN_TLS_SLOT=-1 (bionic Q) */
 #define BIONIC_TLS_PTR_OFFSET    0    /* slot -1 (TLS_SLOT_BIONIC_TLS) at TP-8 = 0 */
 #define BIONIC_TLS_COMPAT_SIZE   16384
